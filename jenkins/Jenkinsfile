@@ -1,0 +1,24 @@
+pipeline{
+    agent any 
+
+    tools{
+        maven 'maven'
+        jdk 'java-21'
+    }
+    stages{
+        stage('git checkout'){
+            steps{
+                git branch: 'master', url: 'https://github.com/Jyothijagadish/jenkins-project.git'
+        }
+    }
+    stage('maven compile'){
+        steps{
+            sh 'mvn compile'
+        }
+    }
+    stage('maven build'){
+        steps{
+            sh 'mvn clean install'
+        }
+    }
+}
